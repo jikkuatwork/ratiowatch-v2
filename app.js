@@ -3,9 +3,11 @@ import { createApp } from "https://unpkg.com/petite-vue@0.2.2/dist/petite-vue.es
 import { store } from "./store.js"
 import { Row } from "./components/Row/index.js"
 import { Vaul } from "./components/Vaul.js"
+import { AddPair } from "./components/AddPair.js"
 
 createApp({
   Row,
   Vaul,
+  AddPair,
   store,
 }).mount()
