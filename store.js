@@ -16,4 +16,5 @@ export const store = {
     ["ETH", "SOL"],
     ["BTC", "ZEC"],
   ],
+  showDelete: false,
 }

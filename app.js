@@ -4,10 +4,12 @@ import { store } from "./store.js"
 import { Row } from "./components/Row/index.js"
 import { Vaul } from "./components/Vaul.js"
 import { AddPair } from "./components/AddPair.js"
+import { EditMode } from "./components/EditMode.js"
 
 createApp({
   Row,
   Vaul,
   AddPair,
+  EditMode,
   store,
 }).mount()

@@ -27,7 +27,6 @@ export function AddPair({ store }) {
           this.error = true
 
           setTimeout(() => {
-            console.log("timeout")
             this.error = false
           }, 3000)
         }
