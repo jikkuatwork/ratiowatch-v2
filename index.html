@@ -55,7 +55,7 @@
     <script type="module" src="./app.js"></script>
   </head>
   <body>
-    <div v-scope="Vaul({slot: AddPair()})"></div>
+    <div v-scope="Vaul({slot: AddPair({store: store})})"></div>
     <div class="page bg-gray-100 c">
       <div
         class="w-full flex flex-col items-center min-h-screen max-w-3xl bg-gray-100 pt-4 overflow-hidden relative"

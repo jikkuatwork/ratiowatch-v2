@@ -1,7 +1,7 @@
 export function Vaul({ slot } = {}) {
   return {
     slot: slot,
-    showSlot: true,
+    showSlot: false,
     toggleSlot() {
       if (!document.startViewTransition) {
         this.showSlot = !this.showSlot
