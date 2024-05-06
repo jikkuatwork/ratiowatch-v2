@@ -27,7 +27,6 @@ export async function getRatio(tickerOne, tickerTwo) {
       throw new Error("Data for one or both tickers is missing")
     }
   } catch (error) {
-    console.error("Failed to fetch data:", error)
     return null
   }
 }

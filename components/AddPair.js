@@ -1,20 +1,41 @@
+import { getRatio } from "./Row/getRatio.js"
+
 export function AddPair({ store }) {
   return {
     tickerOne: "",
     tickerTwo: "",
+    error: false,
     get isFormComplete() {
       return this.tickerOne !== "" && this.tickerTwo !== ""
     },
-    add() {
+    isPairValid: async function () {
+      const ratio = await getRatio(this.tickerOne, this.tickerTwo)
+
+      if (typeof ratio === "number" && isFinite(ratio)) {
+        return Number.isInteger(ratio) || !!(ratio % 1)
+      }
+
+      return false
+    },
+    async add() {
       if (this.isFormComplete) {
-        store.pairs.push([this.tickerOne, this.tickerTwo])
-        this.tickerOne = ""
-        this.tickerTwo = ""
+        if (await this.isPairValid()) {
+          store.pairs.push([this.tickerOne, this.tickerTwo])
+          this.tickerOne = ""
+          this.tickerTwo = ""
+        } else {
+          this.error = true
+
+          setTimeout(() => {
+            console.log("timeout")
+            this.error = false
+          }, 3000)
+        }
       }
     },
     $template: /* HTML */ `<div class="w-full px-4 py-2">
       <div class="text-xs text-black text-opacity-80 mb-1">Add Pair</div>
-      <div class="flex gap-2 mb-2">
+      <div class="flex gap-2 mb-1">
         <input
           v-model="tickerOne"
           type="text"
@@ -51,6 +72,9 @@ export function AddPair({ store }) {
             />
           </svg>
         </div>
+      </div>
+      <div class="text-xs text-red-800 py-1" v-show="error">
+        Sorry, invalid pairs!
       </div>
     </div>`,
   }
