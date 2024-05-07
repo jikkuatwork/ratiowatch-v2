@@ -24,10 +24,10 @@ export const Row = (tickerOne, tickerTwo, index, editMode) => {
     },
     $template: /* HTML */ `
       <div
-        class="font-pt-mono  t text-black text-opacity-70 w-full md:rounded-md sm:rounded-none flex overflow-hidden"
+        class="font-pt-mono text-black text-opacity-70 w-full md:rounded-md sm:rounded-none flex overflow-hidden"
       >
         <div v-scope="CloseButton({show: editMode, index: index})"></div>
-        <div class="px-2 p-1 cp w-full bg-blue-200 hover:bg-blue-100">
+        <div class="px-2 p-1 t cp w-full bg-blue-200 hover:bg-blue-100">
           {{ output }}
         </div>
       </div>
