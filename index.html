@@ -55,15 +55,18 @@
     <script type="module" src="./app.js"></script>
   </head>
   <body>
-    <div v-scope="Vaul({slots: [AddPair({store: store}), EditMode()]})"></div>
+    <div
+      v-scope="Vaul({slots: [AddPair({pairs: pairs}), EditMode({toggle: toggleEdit})]})"
+    ></div>
     <div class="page bg-gray-100 c">
       <div
         class="w-full flex flex-col items-center min-h-screen max-w-3xl bg-gray-100 pt-4 overflow-hidden relative"
       >
         <div class="flex flex-col justify-evenly gap-1 w-full md:gap-2">
           <div
-            v-for="(pair, index) in store.pairs"
-            v-scope="Row(...pair, index, store.showDelete)"
+            v-for="(pair, index) in pairs"
+            :key="index"
+            v-scope="Row(...pair, index, editMode)"
             :mounted="updateRatio()"
             @click="updateRatio()"
           ></div>

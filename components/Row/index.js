@@ -1,12 +1,23 @@
 import { getRatio } from "./getRatio.js"
 
-export const Row = (tickerOne, tickerTwo, index, showDelete) => {
+const CloseButton = ({ show, index }) => {
+  return {
+    show: show,
+    delete: () => console.log("Delete", index),
+    $template: `<div v-show="show" @click="delete" class="bg-red-600 p-1 px-2 cp hover:bg-red-700">
+          x
+        </div>`,
+  }
+}
+
+export const Row = (tickerOne, tickerTwo, index, editMode) => {
   return {
     output: "Loading..",
     index: index,
-    showDelete: showDelete,
+    editMode: editMode,
     tickerOne: tickerOne,
     tickerTwo: tickerTwo,
+    CloseButton: CloseButton,
     updateRatio: async function () {
       const ratio = await getRatio(this.tickerOne, this.tickerTwo)
       this.output = `1 ${tickerOne} = ${ratio} ${tickerTwo}`
@@ -15,12 +26,7 @@ export const Row = (tickerOne, tickerTwo, index, showDelete) => {
       <div
         class="font-pt-mono  t text-black text-opacity-70 w-full md:rounded-md sm:rounded-none flex overflow-hidden"
       >
-        <div
-          v-show="showDelete"
-          class="bg-red-600 p-1 px-2 cp hover:bg-red-700"
-        >
-          x
-        </div>
+        <div v-scope="CloseButton({show: editMode, index: index})"></div>
         <div class="px-2 p-1 cp w-full bg-blue-200 hover:bg-blue-100">
           {{ output }}
         </div>

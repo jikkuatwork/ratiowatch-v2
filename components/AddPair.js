@@ -1,6 +1,6 @@
 import { getRatio } from "./Row/getRatio.js"
 
-export function AddPair({ store }) {
+export function AddPair({ pairs }) {
   return {
     tickerOne: "",
     tickerTwo: "",
