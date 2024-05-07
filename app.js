@@ -27,12 +27,12 @@ createApp({
 
     this.refreshPairs()
   },
-  refreshPairs() {
+  async refreshPairs() {
     const pairs = this.pairs
     this.pairs = []
 
-    this.$nextTick(() => {
-      this.pairs = pairs
-    })
+    await this.$nextTick()
+
+    this.pairs = pairs
   },
 }).mount()
