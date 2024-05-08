@@ -15,24 +15,19 @@ createApp({
   Vaul,
   AddPair,
   EditMode,
-  pairs: [
-    ["BTC", "ETH"],
-    ["SOL", "FTM"],
-  ],
+  pair_sets: [{ tickers: ["BTC", "ETH"], ratio: null }],
   editMode: false,
-  count: 0,
-  message: "Hello",
   toggleEdit() {
     this.editMode = !this.editMode
 
     this.refreshPairs()
   },
   async refreshPairs() {
-    const pairs = this.pairs
-    this.pairs = []
+    const pair_sets = this.pair_sets
+    this.pair_sets = []
 
     await this.$nextTick()
 
-    this.pairs = pairs
+    this.pair_sets = pair_sets
   },
 }).mount()

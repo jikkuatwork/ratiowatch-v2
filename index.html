@@ -56,7 +56,7 @@
   </head>
   <body>
     <div
-      v-scope="Vaul({slots: [AddPair({pairs: pairs}), EditMode({toggle: toggleEdit})]})"
+      v-scope="Vaul({slots: [AddPair({addHandler: () => null}), EditMode({toggle: toggleEdit})]})"
     ></div>
     <div class="page bg-gray-100 c">
       <div
@@ -64,9 +64,9 @@
       >
         <div class="flex flex-col justify-evenly gap-1 w-full md:gap-2">
           <div
-            v-for="(pair, index) in pairs"
+            v-for="(pair_set, index) in pair_sets"
             :key="index"
-            v-scope="Row(...pair, index, editMode)"
+            v-scope="Row({...pair_set, index, editMode})"
             :mounted="updateRatio()"
             @click="updateRatio()"
           ></div>

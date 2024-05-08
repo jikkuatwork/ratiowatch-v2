@@ -10,17 +10,24 @@ const CloseButton = ({ show, index }) => {
   }
 }
 
-export const Row = (tickerOne, tickerTwo, index, editMode) => {
+export const Row = ({ tickers, ratio, index, editMode }) => {
+  console.log(tickers)
+
   return {
     output: "Loading..",
     index: index,
     editMode: editMode,
-    tickerOne: tickerOne,
-    tickerTwo: tickerTwo,
     CloseButton: CloseButton,
     updateRatio: async function () {
-      const ratio = await getRatio(this.tickerOne, this.tickerTwo)
-      this.output = `1 ${tickerOne} = ${ratio} ${tickerTwo}`
+      let new_ratio = null
+
+      if (ratio == null) {
+        new_ratio = await getRatio(...tickers)
+      } else {
+        new_ratio = ratio
+      }
+
+      this.output = `1 ${tickers[0]} = ${new_ratio} ${tickers[1]}`
     },
     $template: /* HTML */ `
       <div
